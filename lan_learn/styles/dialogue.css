@@ -51,6 +51,12 @@
     z-index: 10;
 }
 
+.auto-advance-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .btn-up-dw {
     background-color: #3498db;
     color: #ffffff;
@@ -177,35 +183,51 @@
     cursor: pointer;
 }
 
+.conversation-selector-inline {
+    width: 190px;
+}
+
 .conversation-selector:hover {
     border-color: #ffa500;
 }
 
 /* Speed Control */
 .speed-control {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 10px;
     margin-bottom: 0;
-    padding: 6px 10px;
+    padding: 10px 8px;
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 10px;
+    z-index: 12;
 }
 
 .speed-label {
     font-weight: 700;
     color: #0f172a;
     white-space: nowrap;
+    font-size: 0.85rem;
 }
 
 .speed-slider {
-    width: 220px;
+    -webkit-appearance: slider-vertical;
+    appearance: slider-vertical;
+    width: 24px;
+    height: 180px;
+    cursor: pointer;
 }
 
 .speed-value {
     min-width: 44px;
-    text-align: right;
+    text-align: center;
     font-weight: 700;
     color: #0f172a;
 }
@@ -219,7 +241,8 @@
     max-width: 1400px;
     background-color: #fff;
     padding: 15px;
-    padding-right: 80px; /* Add space for navigation buttons */
+    padding-left: 84px; /* Space for left-side speed control */
+    padding-right: 300px; /* Add space for navigation buttons + selector */
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
@@ -495,8 +518,18 @@
         height: auto;
         max-height: 50vh;
         padding: 15px;
-        padding-right: 70px; /* Adjust space for navigation buttons on mobile */
+        padding-left: 72px;
+        padding-right: 220px; /* Adjust space for right controls on mobile */
         width: 95%;
+    }
+
+    .speed-control {
+        left: 8px;
+        padding: 8px 6px;
+    }
+
+    .speed-slider {
+        height: 140px;
     }
     
     .script-text {
@@ -531,6 +564,10 @@
     .conversation-selector {
         width: 150px;
         font-size: 0.9rem;
+    }
+
+    .conversation-selector-inline {
+        width: 145px;
     }
     
     .btn-up-dw {
@@ -601,7 +638,18 @@
         height: auto;
         max-height: 40vh;
         padding: 10px;
-        padding-right: 50px; /* Adjust space for navigation buttons on smaller screens */
+        padding-left: 62px;
+        padding-right: 180px; /* Adjust space for right controls on smaller screens */
+    }
+
+    .speed-control {
+        left: 6px;
+        padding: 6px 4px;
+        gap: 6px;
+    }
+
+    .speed-slider {
+        height: 110px;
     }
     
     .script-text {
@@ -612,6 +660,10 @@
         width: 120px;
         font-size: 0.8rem;
         padding: 8px;
+    }
+
+    .conversation-selector-inline {
+        width: 120px;
     }
     
     .btn-up-dw {

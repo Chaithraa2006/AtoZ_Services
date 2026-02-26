@@ -66,8 +66,8 @@ class DialoguePage {
         if (speedSlider) {
             this._initSpeedSlider(speedSlider);
             speedSlider.addEventListener('input', (e) => {
-                const value = parseInt(e.target.value, 10);
-                this.setAutoAdvanceSpeed(value);
+                const sliderValue = parseInt(e.target.value, 10);
+                this.setAutoAdvanceSpeed(this._sliderValueToDelayMs(sliderValue));
             });
         }
     }
@@ -76,11 +76,25 @@ class DialoguePage {
         // Ensure default knob starts in the middle based on current code value
         const min = 1000;
         const max = Math.max(min + 1000, (this.autoAdvanceDelayMs * 2) - min);
-        speedSlider.min = String(min);
-        speedSlider.max = String(max);
+        this.speedSliderMin = min;
+        this.speedSliderMax = max;
+        speedSlider.min = String(this.speedSliderMin);
+        speedSlider.max = String(this.speedSliderMax);
         speedSlider.step = '250';
-        speedSlider.value = String(this.autoAdvanceDelayMs);
+        speedSlider.value = String(this._delayMsToSliderValue(this.autoAdvanceDelayMs));
         this._updateSpeedValueUI(this.autoAdvanceDelayMs);
+    }
+
+    _sliderValueToDelayMs(sliderValue) {
+        const min = Number.isFinite(this.speedSliderMin) ? this.speedSliderMin : 1000;
+        const max = Number.isFinite(this.speedSliderMax) ? this.speedSliderMax : 5000;
+        return (min + max) - sliderValue;
+    }
+
+    _delayMsToSliderValue(delayMs) {
+        const min = Number.isFinite(this.speedSliderMin) ? this.speedSliderMin : 1000;
+        const max = Number.isFinite(this.speedSliderMax) ? this.speedSliderMax : 5000;
+        return (min + max) - delayMs;
     }
 
     _updateSpeedValueUI(delayMs) {
