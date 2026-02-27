@@ -152,8 +152,8 @@
                   aria-live="polite"
                 ></div>
           <!-- Conversation Block with Navigation Buttons -->
-          <div class="conversation-block">
-            <!-- Speed Control (Vertical Left Side) -->
+          <div class="conversation-wrapper">
+            <!-- Speed Control (Vertical Left Side - Outside dialogue box) -->
             <div class="speed-control" id="speed-control">
               <label for="speed-slider" class="speed-label">Auto speed</label>
               <input
@@ -168,7 +168,7 @@
               <span id="speed-value" class="speed-value">3.0s</span>
             </div>
 
-            <!-- Navigation Buttons on the right side -->
+            <div class="conversation-block">
             <div class="btn-cons">
               <button class="btn-up-dw" id="prev-line-btn">
                 <i data-lucide="arrow-up"></i>
@@ -189,6 +189,7 @@
               <div class="loading">Loading dialogue...</div>
             </div>
           </div>
+          </div> <!-- end conversation-wrapper -->
 
           <!-- Button Container -->
           <div class="button-con">
